@@ -13,19 +13,19 @@ OBJDUMP = $(BINDIR)/$(ADDNAME)objdump
 RANLIB  = $(BINDIR)/$(ADDNAME)ranlib
 STRIP   = $(BINDIR)/$(ADDNAME)strip
 
-H8WRITE = ../../tools/h8write/h8write
+H8WRITE = /home/mio/programming/OS12/h8write #PackageFiles/src/kz_h8write
 
 # FreeBSD-4.x:/dev/cuaaX, FreeBSD-6.x:/dev/cuadX, FreeBSD(USB):/dev/cuaUx
 # Linux:/dev/ttySx, Linux(USB):/dev/ttyUSBx, Windows:comX
-H8WRITE_SERDEV = /dev/cuad0
+H8WRITE_SERDEV = /dev/ttyUSB0
 
-OBJS  = vector.o startup.o main.o
+OBJS  = vector.o startup.o main.o xmodem.o
 OBJS += lib.o serial.o
 
 TARGET = OS12
 
 CFLAGS = -Wall -mh -nostdinc -nostdlib -fno-builtin
-#CFLAGS += -mint32 # int¤ò32¥Ó¥Ã¥È¤Ë¤¹¤ë¤È³Ý»»¡¿³ä»»¤¬¤Ç¤­¤Ê¤¯¤Ê¤ë
+#CFLAGS += -mint32 # intï¿½ï¿½32ï¿½Ó¥Ã¥È¤Ë¤ï¿½ï¿½ï¿½È³Ý»ï¿½ï¿½ï¿½ï¿½ä»»ï¿½ï¿½ï¿½Ç¤ï¿½ï¿½Ê¤ï¿½ï¿½Ê¤ï¿½
 CFLAGS += -I.
 #CFLAGS += -g
 CFLAGS += -Os
