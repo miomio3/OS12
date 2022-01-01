@@ -20,12 +20,12 @@ H8WRITE = ./h8write
 H8WRITE_SERDEV = /dev/ttyUSB0
 
 OBJS  = vector.o startup.o main.o
-OBJS += lib.o serial.o xmodem.o
+OBJS += lib.o serial.o xmodem.o elf.o
 
 TARGET = OS12
 
 CFLAGS = -Wall -mh -nostdinc -nostdlib -fno-builtin
-#CFLAGS += -mint32 # int¤ò32¥Ó¥Ã¥È¤Ë¤¹¤ë¤È³Ý»»¡¿³ä»»¤¬¤Ç¤­¤Ê¤¯¤Ê¤ë
+#CFLAGS += -mint32 # intï¿½ï¿½32ï¿½Ó¥Ã¥È¤Ë¤ï¿½ï¿½ï¿½È³Ý»ï¿½ï¿½ï¿½ï¿½ä»»ï¿½ï¿½ï¿½Ç¤ï¿½ï¿½Ê¤ï¿½ï¿½Ê¤ï¿½
 CFLAGS += -I.
 #CFLAGS += -g
 CFLAGS += -Os

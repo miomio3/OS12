@@ -72,14 +72,14 @@ long  xmodem_recv(char *buf)
       xmodem_wait();
   
     c = serial_recv_byte(SERIAL_DEFAULT_DEVICE);
-    if(c == XMODEM_EOT){
+    if(c == XMODEM_EOT){ //EOT >> send ACK >> end
       serial_send_byte(SERIAL_DEFAULT_DEVICE, XMODEM_ACK);
       break;
     }
-    else if(c == XMODEM_CAN){
+    else if(c == XMODEM_CAN){ //CAN >> stop
       return (-1);
     }
-    else if(c == XMODEM_SOH){
+    else if(c == XMODEM_SOH){ // SOH >> read block >> send ACK
       receiving++;
       r = xmodem_read_block(block_number, buf);
       if(r < 0){
