@@ -49,6 +49,8 @@ int main(void)
   static long size;
   static unsigned char  *loadbuf;
   extern int  buffer_start;
+  char	*entry_point;
+  void	(*f)(void);
 
   init();
   puts("OS12 has start.\n");
@@ -76,10 +78,20 @@ int main(void)
       dump(loadbuf, size);
     }
     else if(!strcmp(buf, "run")){
-      elf_load(loadbuf);
+    	entry_point = elf_load(loadbuf);
+		if(!entry_point){
+			puts("Run error.\n");
+		}
+		else{
+			puts("Entry point: ");
+			putxval((unsigned long)entry_point, 1);
+			puts("\n");
+			f = (void (*)(void))entry_point;
+			f();
+		}
     }
     else{
-      puts("Input load or dump.\n");
+      puts("Input load or dump or run.\n");
     }
   }
   return (0);

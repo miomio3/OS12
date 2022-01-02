@@ -11,7 +11,7 @@ int strncmp(const char *s1, const char *s2, int len);
 
 int putc(char c);    /* ��ʸ������ */
 char getc(void);     /* ��ʸ������ */
-int puts(unsigned char *str); /* ʸ�������� */
+int puts(char *str); /* ʸ�������� */
 int gets(unsigned char *buf); /* ʸ������� */
 int putxval(unsigned long value, int column); /* ���ͤ�16��ɽ�� */
 

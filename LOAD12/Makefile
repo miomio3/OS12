@@ -22,7 +22,7 @@ H8WRITE_SERDEV = /dev/ttyUSB0
 OBJS  = vector.o startup.o main.o
 OBJS += lib.o serial.o xmodem.o elf.o
 
-TARGET = OS12
+TARGET = LOAD12
 
 CFLAGS = -Wall -mh -nostdinc -nostdlib -fno-builtin
 #CFLAGS += -mint32 # int��32�ӥåȤˤ���ȳݻ����任���Ǥ��ʤ��ʤ�

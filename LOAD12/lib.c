@@ -90,7 +90,7 @@ char getc(void)
 }
 
 /* ʸ�������� */
-int puts(unsigned char *str)
+int puts(char *str)
 {
   while (*str)
     putc(*(str++));
@@ -129,7 +129,7 @@ int putxval(unsigned long value, int column)
     if (column) column--;
   }
 
-  puts((unsigned char *)p + 1);
+  puts(p + 1);
 
   return 0;
 }
