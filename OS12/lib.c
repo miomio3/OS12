@@ -90,7 +90,7 @@ char getc(void)
 }
 
 /* ʸ�������� */
-int puts(unsigned char *str)
+int puts(char *str)
 {
   while (*str)
     putc(*(str++));

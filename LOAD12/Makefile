@@ -19,13 +19,13 @@ H8WRITE = ./h8write
 # Linux:/dev/ttySx, Linux(USB):/dev/ttyUSBx, Windows:comX
 H8WRITE_SERDEV = /dev/ttyUSB0
 
-OBJS  = vector.o startup.o main.o
+OBJS  = vector.o startup.o intr.o main.o interrupt.o
 OBJS += lib.o serial.o xmodem.o elf.o
 
 TARGET = LOAD12
 
 CFLAGS = -Wall -mh -nostdinc -nostdlib -fno-builtin
-#CFLAGS += -mint32 # intï¿½ï¿½32ï¿½Ó¥Ã¥È¤Ë¤ï¿½ï¿½ï¿½È³Ý»ï¿½ï¿½ï¿½ï¿½ä»»ï¿½ï¿½ï¿½Ç¤ï¿½ï¿½Ê¤ï¿½ï¿½Ê¤ï¿½
+#CFLAGS += -mint32 # int¤ò32¥Ó¥Ã¥È¤Ë¤¹¤ë¤È³Ý»»¡¿³ä»»¤¬¤Ç¤­¤Ê¤¯¤Ê¤ë
 CFLAGS += -I.
 #CFLAGS += -g
 CFLAGS += -Os
@@ -35,6 +35,7 @@ LFLAGS = -static -T ld.scr -L.
 
 .SUFFIXES: .c .o
 .SUFFIXES: .s .o
+.SUFFIXES: .S .o
 
 all :		$(TARGET)
 
@@ -47,6 +48,9 @@ $(TARGET) :	$(OBJS)
 		$(CC) -c $(CFLAGS) $<
 
 .s.o :		$<
+		$(CC) -c $(CFLAGS) $<
+
+.S.o :		$<
 		$(CC) -c $(CFLAGS) $<
 
 $(TARGET).mot :	$(TARGET)

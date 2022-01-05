@@ -3,15 +3,19 @@
 #include "xmodem.h"
 #include "lib.h"
 #include "elf.h"
+#include "intr.h"
+#include "interrupt.h"
 
 static int  init(void)
 {
-  extern int rodata_end, data_start, data_end, bss_start, bss_end;
+	extern int rodata_end, data_start, data_end, bss_start, bss_end;
 
-  memcpy(&data_start, &rodata_end, (long)(&data_end - &data_start));
-  memset(&bss_start, 0, (long)(&bss_end - &bss_start));
-  serial_init(SERIAL_DEFAULT_DEVICE);
-  return (0);
+	memcpy(&data_start, &rodata_end, (long)(&data_end - &data_start));
+	memset(&bss_start, 0, (long)(&bss_end - &bss_start));
+	serial_init(SERIAL_DEFAULT_DEVICE);
+	sofvec_init();
+	INTR_DISABLE;
+	return (0);
 }
 
 static int  dump(char *buf, long size)
@@ -47,17 +51,17 @@ int main(void)
 {
   static char buf[16];
   static long size;
-  static unsigned char  *loadbuf;
+  static char  *loadbuf;
   extern int  buffer_start;
   char	*entry_point;
   void	(*f)(void);
 
   init();
-  puts("OS12 has start.\n");
+  puts("LOAD12 has start.\n");
 
   while(1)
   {
-    puts("OS12> ");
+    puts("LOAD12> ");
     gets(buf);
   
     if(!strcmp(buf, "load")){

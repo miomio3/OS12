@@ -98,10 +98,10 @@ int puts(char *str)
 }
 
 /* ʸ������� */
-int gets(unsigned char *buf)
+int gets(char *buf)
 {
   int i = 0;
-  unsigned char c;
+  char c;
   do {
     c = getc();
     if (c == '\n')
